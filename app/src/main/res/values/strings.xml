@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">WFIS_Shop</string>
+    <string name="pulpit">Pulpit</string>
+    <string name="repertoire">Repertuar</string>
+    <string name="map">Mapa</string>
+    <string name="event_list">Lista Eventów</string>
+    <string name="tutorial">Tutorial</string>
+    <string name="tickets">Moje Bilety</string>
+    <string name="account">Konto</string>
+    <string name="update">Zapisz</string>event_list
+</resources>
