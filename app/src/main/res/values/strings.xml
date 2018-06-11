@@ -8,4 +8,25 @@
     <string name="tickets">Moje Bilety</string>
     <string name="account">Konto</string>
     <string name="update">Zapisz</string>event_list
+
+
+    <string name="desc_firebase_lockup">Firebase logo and name</string>
+    <string name="signed_out">Signed Out</string>
+    <string name="auth_failed">Authentication failed</string>
+    <string name="emailpassword_status_fmt">Email User: %1$s (verified: %2$b)</string>
+    <string name="loading">Loading…</string>
+    <string name="category_login">Login</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="sign_in">Sign In</string>
+    <string name="create_account">Create Account</string>
+    <string name="reset">Reset password</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="verify_email">Verify Email</string>
+
+    <string name="strYellow">Color yellow means that someone else has reserved a place</string>
+    <string name="strRed">Color red means that someone else has bought a place</string>
+    <string name="strBlue">Color Blue means that you have reserved a place</string>
+    <string name="strCyan">Color Cyan means that you have bought a place</string>
+    <string name="category_help">Help</string>
 </resources>

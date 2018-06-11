@@ -1,6 +1,7 @@
 package com.wfis.wfis_shop.fragments;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -13,12 +14,22 @@ import com.wfis.wfis_shop.core.BaseFragment;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class HomeFragment extends BaseFragment {
 
     public static HomeFragment newInstance() {
         return new HomeFragment();
     }
+
+    int currentPage = 0;
+    Timer timer;
+    final long DELAY_MS = 500;//delay in milliseconds before task is to be executed
+    final long PERIOD_MS = 3000; // time in milliseconds between successive task executions.
+
+
+
 
     private ViewPager viewPager;
     private View repertoire;
@@ -44,15 +55,47 @@ public class HomeFragment extends BaseFragment {
         photos.add("https://www.filepicker.io/api/file/0xFvPm5HSSSbtqi6Awwn/convert?fit=clip&w=270");
         photos.add("https://www.filepicker.io/api/file/UJOIGNaATj23GhRSwSWl/convert?fit=clip&w=270");
         adaper.setPhotos(photos);
+
+        final Handler handler = new Handler();
+        final Runnable Update = new Runnable() {
+            public void run() {
+                if (currentPage == 3) {
+                    currentPage = 0;
+                }
+                viewPager.setCurrentItem(currentPage++, true);
+            }
+        };
+
+        timer = new Timer(); // This will create a new Thread
+        timer .schedule(new TimerTask() { // task to be scheduled
+
+            @Override
+            public void run() {
+                handler.post(Update);
+            }
+        }, DELAY_MS, PERIOD_MS);
+
         return view;
     }
 
     private void setListeners() {
+        repertoire.setOnClickListener(view -> {
+            getNavigation().changeFragment(RepertoireFragment.newInstance());
+        });
+        tickets.setOnClickListener(view -> {
+            getNavigation().changeFragment(MyTicketsFragment.newInstance());
+        });
         map.setOnClickListener(view -> {
             getNavigation().changeFragment(ShopMapFragment.newInstance());
         });
-        repertoire.setOnClickListener(view -> {
+        event_list.setOnClickListener(view -> {
             getNavigation().changeFragment(ShopMapFragment.newInstance());
+        });
+        tutorial.setOnClickListener(view -> {
+            getNavigation().changeFragment(ToolsFragment.newInstance());
+        });
+        account.setOnClickListener(view -> {
+            getNavigation().changeFragment(LoginFragment.newInstance());
         });
     }
 
