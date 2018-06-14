@@ -12,9 +12,11 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.maps.android.clustering.Cluster;
 import com.google.maps.android.clustering.ClusterItem;
 import com.google.maps.android.clustering.ClusterManager;
@@ -103,7 +105,12 @@ public class ShopMapFragment extends BaseFragment implements OnMapReadyCallback,
 
         centerOnPoland();
 
-//        this.googleMap.addMarker(new MarkerOptions().title("TEST").position(new LatLng(51.759445, 19.457216)));
+        this.googleMap.addMarker(new MarkerOptions()
+                .title("MDK Radomsko")
+                .position(new LatLng(51.759445, 19.457216))
+                .snippet("and snippet")
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE))
+        );
         clusterManager = new ClusterManager(getContext(), googleMap);
         clusterManager.clearItems();
         clusterManager.addItems(testShops());
@@ -132,6 +139,7 @@ public class ShopMapFragment extends BaseFragment implements OnMapReadyCallback,
         shop.setLat(51.778817);
         shop.setLon(19.476567);
         shop.setName("shop " );
+
         list.add(shop);
 //        for (int i = 0; i < 20; i++) {
 //            shop = new Shop();

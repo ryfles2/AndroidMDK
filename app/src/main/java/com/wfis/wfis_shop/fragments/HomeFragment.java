@@ -7,7 +7,10 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.wfis.wfis_shop.R;
 import com.wfis.wfis_shop.adapters.ViewPagerAdaper;
 import com.wfis.wfis_shop.core.BaseFragment;
@@ -27,7 +30,8 @@ public class HomeFragment extends BaseFragment {
     Timer timer;
     final long DELAY_MS = 500;//delay in milliseconds before task is to be executed
     final long PERIOD_MS = 3000; // time in milliseconds between successive task executions.
-
+    private FirebaseAuth mAuth;
+    private FirebaseUser currentUser;
 
 
 
@@ -46,6 +50,9 @@ public class HomeFragment extends BaseFragment {
 
         findViews(view);
         setListeners();
+
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
 
         ViewPagerAdaper adaper = new ViewPagerAdaper();
         viewPager.setAdapter(adaper);
@@ -79,17 +86,23 @@ public class HomeFragment extends BaseFragment {
     }
 
     private void setListeners() {
+
         repertoire.setOnClickListener(view -> {
             getNavigation().changeFragment(RepertoireFragment.newInstance());
         });
         tickets.setOnClickListener(view -> {
-            getNavigation().changeFragment(MyTicketsFragment.newInstance());
+
+            if(currentUser != null)
+            {
+                getNavigation().changeFragment(MyTicketsFragment.newInstance());
+            }
+            else  Toast.makeText(getContext(),"Please log in",Toast.LENGTH_SHORT).show();
         });
         map.setOnClickListener(view -> {
             getNavigation().changeFragment(ShopMapFragment.newInstance());
         });
         event_list.setOnClickListener(view -> {
-            getNavigation().changeFragment(ShopMapFragment.newInstance());
+            getNavigation().changeFragment(fragment_event_list.newInstance());
         });
         tutorial.setOnClickListener(view -> {
             getNavigation().changeFragment(ToolsFragment.newInstance());

@@ -3,6 +3,7 @@ package com.wfis.wfis_shop.fragments;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -61,6 +62,7 @@ public class MyTicketsFragment extends BaseFragment {
         MyTicketsFragment fragment = new MyTicketsFragment();
         fragment.setArguments(args);
         return fragment;
+
     }
 
     //paypal

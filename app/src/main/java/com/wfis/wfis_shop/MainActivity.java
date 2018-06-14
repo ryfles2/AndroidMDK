@@ -1,5 +1,6 @@
 package com.wfis.wfis_shop;
 
+import android.content.pm.ActivityInfo;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -8,10 +9,14 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Window;
+import android.widget.Toast;
 
 import com.wfis.wfis_shop.core.BaseFragment;
 import com.wfis.wfis_shop.fragments.HomeFragment;
 import com.wfis.wfis_shop.fragments.ListFragment;
+import com.wfis.wfis_shop.fragments.MyTicketsFragment;
+import com.wfis.wfis_shop.fragments.ShopMapFragment;
 import com.wfis.wfis_shop.navigation.MenuView;
 import com.wfis.wfis_shop.navigation.NavigationInterface;
 import com.wfis.wfis_shop.navigation.TopBar;
@@ -22,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements NavigationInterfa
     private DrawerLayout drawerLayout;
     private MenuView menuView;
     private FragmentManager manager;
+    private static  BaseFragment statFragment = HomeFragment.newInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +36,10 @@ public class MainActivity extends AppCompatActivity implements NavigationInterfa
         manager = getSupportFragmentManager();
         findViews();
         setListeners();
-        changeFragment(HomeFragment.newInstance(), false);
+
+        if (statFragment.toString().startsWith("HomeFragment")) changeFragment(statFragment, false);
+        else changeFragment(statFragment, true);
+
     }
 
     private void findViews() {
@@ -55,8 +64,17 @@ public class MainActivity extends AppCompatActivity implements NavigationInterfa
 
     @Override
     public void changeFragment(BaseFragment fragment) {
+
+        //Toast.makeText(this,fragment.toString() +"  "+ MyTicketsFragment.class.toString(),Toast.LENGTH_SHORT).show();
+
+        if (fragment.toString().startsWith("MyTicketsFragment")) setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE );
+        else setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED );
+
+
+        statFragment=fragment;
         navigateTo(fragment, true);
     }
+
 
     @Override
     public void changeFragment(BaseFragment fragment, boolean addToBackStack) {
@@ -73,6 +91,15 @@ public class MainActivity extends AppCompatActivity implements NavigationInterfa
             if (current != null && fragment.getClass().equals(current.getClass())) {
                 Log.w("BaseActivity", "Fragment navigation failed, possible duplicate entry %s");
             }
+            //home
+            if (fragment.getClass().equals(HomeFragment.class)) {
+                topBar.showBackArrow(false);
+            }
+            else
+            {
+                topBar.showBackArrow(true);
+            }
+
         }
 
         FragmentTransaction transaction = manager.beginTransaction();
@@ -110,17 +137,21 @@ public class MainActivity extends AppCompatActivity implements NavigationInterfa
 
     @Override
     public void onBackArrowClick() {
-        onBackPressed();
+        //onBackPressed();
+        changeFragment(HomeFragment.newInstance());
     }
 
     // ------------------- BACKSTACK
 
     @Override
     public void onBackStackChanged() {
-        if (getSupportFragmentManager().getBackStackEntryCount() >= 1) {
-            topBar.showBackArrow(true);
-        } else {
-            topBar.showBackArrow(false);
-        }
+//        if (getSupportFragmentManager().getBackStackEntryCount() >= 1) {
+//            topBar.showBackArrow(true);
+//        } else {
+//            topBar.showBackArrow(false);
+//        }
+
+
+
     }
 }

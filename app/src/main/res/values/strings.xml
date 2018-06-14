@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">WFIS_Shop</string>
+    <string name="app_name">MDK Radomsko</string>
     <string name="pulpit">Pulpit</string>
     <string name="repertoire">Repertuar</string>
     <string name="map">Mapa</string>
@@ -29,4 +29,7 @@
     <string name="strBlue">Color Blue means that you have reserved a place</string>
     <string name="strCyan">Color Cyan means that you have bought a place</string>
     <string name="category_help">Help</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -10,17 +10,18 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="198dp"
+        android:layout_height="258dp"
         android:background="@android:color/black">
 
 
         <Button
             android:id="@+id/btnReservation"
-            android:layout_width="wrap_content"
+            android:layout_width="147dp"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
             android:layout_below="@+id/ticketGodzina"
+            android:layout_marginEnd="260dp"
             android:layout_marginStart="48dp"
             android:layout_toEndOf="@+id/btnBuy"
             android:text="Cancel your reservation" />
@@ -94,6 +95,15 @@
             android:text=""
             android:textColor="#FFFF"
             android:textSize="20dp" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="185dp"
+            android:layout_height="147dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="23dp"
+            app:srcCompat="@drawable/qr" />
 
         <!--<TextView-->
         <!--android:id="@+id/ticketPrice"-->
