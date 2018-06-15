@@ -48,7 +48,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:hint="@string/hint_email"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"
+            android:background="#72BE42"/>
 
         <EditText
             android:id="@+id/field_password"
@@ -56,15 +57,17 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:hint="@string/hint_password"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:background="#72BE42"/>
 
         <Button
             android:id="@+id/email_sign_in_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:theme="@style/ThemeOverlay.MyDarkButton"
             android:text="@string/sign_in"
-            android:theme="@style/ThemeOverlay.MyDarkButton" />
+            android:textColor="#72BE42"/>
 
 
     </LinearLayout>
@@ -86,7 +89,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/create_account"
-            android:theme="@style/ThemeOverlay.MyDarkButton" />
+            android:theme="@style/ThemeOverlay.MyDarkButton"
+            android:textColor="#72BE42"/>
 
         <Button
             android:id="@+id/resetPsswd"
@@ -95,7 +99,8 @@
             android:layout_weight="1"
             android:text="@string/reset"
             android:theme="@style/ThemeOverlay.MyDarkButton"
-            android:visibility="visible" />
+            android:visibility="visible"
+            android:textColor="#72BE42"/>
 
     </LinearLayout>
 
@@ -131,7 +136,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/sign_out"
-                android:theme="@style/ThemeOverlay.MyDarkButton" />
+                android:theme="@style/ThemeOverlay.MyDarkButton"
+                android:textColor="#72BE42"/>
 
             <Button
                 android:id="@+id/verify_email_button"
@@ -139,7 +145,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1.0"
                 android:text="@string/verify_email"
-                android:theme="@style/ThemeOverlay.MyDarkButton" />
+                android:theme="@style/ThemeOverlay.MyDarkButton"
+                android:textColor="#72BE42"/>
 
 
 

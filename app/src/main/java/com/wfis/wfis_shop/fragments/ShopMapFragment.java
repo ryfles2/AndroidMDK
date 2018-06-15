@@ -94,6 +94,7 @@ public class ShopMapFragment extends BaseFragment implements OnMapReadyCallback,
     @Override
     public boolean onMarkerClick(Marker marker) {
         clusterManager.onMarkerClick(marker);
+        Toast.makeText(getContext(),marker.getTitle(),Toast.LENGTH_SHORT).show();
         return true;
     }
 
@@ -107,8 +108,7 @@ public class ShopMapFragment extends BaseFragment implements OnMapReadyCallback,
 
         this.googleMap.addMarker(new MarkerOptions()
                 .title("MDK Radomsko")
-                .position(new LatLng(51.759445, 19.457216))
-                .snippet("and snippet")
+                .position(new LatLng(51.064949, 19.442058))
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE))
         );
         clusterManager = new ClusterManager(getContext(), googleMap);
@@ -124,8 +124,8 @@ public class ShopMapFragment extends BaseFragment implements OnMapReadyCallback,
 
     private void centerOnPoland() {
         LatLngBounds.Builder builder = LatLngBounds.builder();
-        builder.include(new LatLng(54.776871, 23.605018));
-        builder.include(new LatLng(49.541185, 14.453407));
+        builder.include(new LatLng(51.089150, 19.525181));
+        builder.include(new LatLng(51.040575, 19.396054));
         LatLngBounds bounds = builder.build();
         googleMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 20));
 
@@ -136,9 +136,9 @@ public class ShopMapFragment extends BaseFragment implements OnMapReadyCallback,
         List<Shop> list = new ArrayList<>();
         Shop shop;
         shop = new Shop();
-        shop.setLat(51.778817);
-        shop.setLon(19.476567);
-        shop.setName("shop " );
+        shop.setLat(51.067894);
+        shop.setLon(19.444650);
+        shop.setName("Museum" );
 
         list.add(shop);
 //        for (int i = 0; i < 20; i++) {

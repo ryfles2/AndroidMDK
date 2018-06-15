@@ -18,10 +18,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:background="@android:color/darker_gray"
+            android:background="#72BE42"
             android:gravity="center"
             android:text="Date"
-            android:textColor="#FFFF"
+            android:textColor="@color/cardview_dark_background"
             android:textSize="20sp" />
         <TextView
             android:id="@+id/menuDataGodzina"
@@ -29,10 +29,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/menuDataName"
-            android:background="@android:color/darker_gray"
+            android:background="#72BE42"
             android:gravity="center"
             android:text="Time"
-            android:textColor="#FFFF"
+            android:textColor="@color/cardview_dark_background"
             android:textSize="20sp" />
 
     </RelativeLayout>

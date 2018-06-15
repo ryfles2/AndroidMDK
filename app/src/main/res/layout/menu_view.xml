@@ -140,7 +140,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/green"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:visibility="gone">>
 
         <ImageView
             android:layout_width="40dp"

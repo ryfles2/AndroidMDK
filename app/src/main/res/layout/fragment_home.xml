@@ -46,14 +46,16 @@
                         android:layout_alignStart="@+id/repertoire"
                         android:layout_alignTop="@id/repertoire"
                         android:padding="40dp"
-                        android:src="@drawable/home_wfis" />
+                        android:src="@drawable/tv" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/repertoire"
                         android:layout_centerHorizontal="true"
-                        android:text="@string/repertoire" />
+                        android:text="@string/repertoire"
+                        android:textColor="#72BE42"
+                        />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -69,12 +71,23 @@
                         android:layout_centerHorizontal="true"
                         android:src="@drawable/green_circle" />
 
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_alignBottom="@id/tickets"
+                        android:layout_alignEnd="@id/tickets"
+                        android:layout_alignStart="@+id/tickets"
+                        android:layout_alignTop="@id/tickets"
+                        android:padding="40dp"
+                        android:src="@drawable/ticket" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/tickets"
                         android:layout_centerHorizontal="true"
-                        android:text="@string/tickets" />
+                        android:text="@string/tickets"
+                        android:textColor="#72BE42"/>
                 </RelativeLayout>
             </LinearLayout>
 
@@ -96,12 +109,23 @@
                         android:layout_centerHorizontal="true"
                         android:src="@drawable/green_circle" />
 
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_alignBottom="@id/map"
+                        android:layout_alignEnd="@id/map"
+                        android:layout_alignStart="@+id/map"
+                        android:layout_alignTop="@id/map"
+                        android:padding="40dp"
+                        android:src="@drawable/map" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/map"
                         android:layout_centerHorizontal="true"
-                        android:text="@string/map" />
+                        android:text="@string/map"
+                        android:textColor="#72BE42"/>
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -110,18 +134,29 @@
                     android:layout_weight="1">
 
                     <ImageView
-                        android:id="@+id/event_list"
+                        android:id="@+id/account"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:src="@drawable/green_circle" />
 
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_alignBottom="@id/account"
+                        android:layout_alignEnd="@id/account"
+                        android:layout_alignStart="@+id/account"
+                        android:layout_alignTop="@id/account"
+                        android:padding="40dp"
+                        android:src="@drawable/account" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/event_list"
+                        android:layout_below="@id/account"
                         android:layout_centerHorizontal="true"
-                        android:text="@string/event_list" />
+                        android:text="@string/account"
+                        android:textColor="#72BE42"/>
                 </RelativeLayout>
             </LinearLayout>
 
@@ -143,33 +178,58 @@
                         android:layout_centerHorizontal="true"
                         android:src="@drawable/green_circle" />
 
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_alignBottom="@id/tutorial"
+                        android:layout_alignEnd="@id/tutorial"
+                        android:layout_alignStart="@+id/tutorial"
+                        android:layout_alignTop="@id/tutorial"
+                        android:padding="40dp"
+                        android:src="@drawable/help" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/tutorial"
                         android:layout_centerHorizontal="true"
-                        android:text="@string/tutorial" />
+                        android:text="@string/tutorial"
+                        android:textColor="#72BE42"/>
                 </RelativeLayout>
+
 
                 <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    android:visibility="gone">
 
                     <ImageView
-                        android:id="@+id/account"
+                        android:id="@+id/event_list"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:src="@drawable/green_circle" />
 
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_alignBottom="@id/event_list"
+                        android:layout_alignEnd="@id/event_list"
+                        android:layout_alignStart="@+id/event_list"
+                        android:layout_alignTop="@id/event_list"
+                        android:padding="40dp"
+                        android:src="@drawable/event" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/account"
+                        android:layout_below="@id/event_list"
                         android:layout_centerHorizontal="true"
-                        android:text="@string/account" />
+                        android:text="@string/event_list"
+                        android:textColor="#72BE42"/>
                 </RelativeLayout>
+
             </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
