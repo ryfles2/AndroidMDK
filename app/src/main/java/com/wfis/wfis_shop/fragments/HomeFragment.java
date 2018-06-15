@@ -57,7 +57,6 @@ public class HomeFragment extends BaseFragment {
         ViewPagerAdaper adaper = new ViewPagerAdaper();
         viewPager.setAdapter(adaper);
         List<String> photos = new ArrayList<>();
-        photos.add("http://www.mdkradomsko.pl/system/images/W1siZiIsIjIwMTYvMDQvMDQvMDMvMTAvMTMvMzc2L01ES19sb2dvX1JHQi5qcGVnIl0sWyJwIiwidGh1bWIiLCI5MDB4NjAwIl1d/MDK_logo%20RGB.jpeg");
         photos.add("http://www.mdkradomsko.pl/assets/page-images/news-foto.jpg");
         photos.add("https://www.filepicker.io/api/file/0xFvPm5HSSSbtqi6Awwn/convert?fit=clip&w=270");
         photos.add("https://www.filepicker.io/api/file/UJOIGNaATj23GhRSwSWl/convert?fit=clip&w=270");

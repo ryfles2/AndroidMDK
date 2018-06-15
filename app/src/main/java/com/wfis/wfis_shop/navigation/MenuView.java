@@ -8,11 +8,23 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.wfis.wfis_shop.R;
 
-public class MenuView extends RelativeLayout implements View.OnClickListener {
+public class MenuView extends RelativeLayout {
 
-    private LinearLayout pulpit, list, promotion;
+
+    private FirebaseAuth mAuth;
+    private FirebaseUser currentUser;
+
+    private LinearLayout home;
+    private LinearLayout repertoire;
+    private LinearLayout tickets;
+    private LinearLayout map;
+    private LinearLayout events;
+    private LinearLayout tutorial;
+    private LinearLayout account;
     private MenuInteractions menuInteractions;
 
     public MenuView(Context context) {
@@ -37,44 +49,78 @@ public class MenuView extends RelativeLayout implements View.OnClickListener {
 
     private void init(Context context) {
         inflate(context, R.layout.menu_view, this);
-        pulpit = findViewById(R.id.pulpit);
-        list = findViewById(R.id.list);
-        promotion = findViewById(R.id.promocje);
+        home = findViewById(R.id.home);
+        repertoire = findViewById(R.id.repertoire);
+        tickets = findViewById(R.id.tickets);
+        map = findViewById(R.id.map);
+        events = findViewById(R.id.events);
+        tutorial = findViewById(R.id.tutorial);
+        account = findViewById(R.id.account);
 
-        promotion.setOnClickListener(this);
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
 
-        pulpit.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (menuInteractions != null) {
-                    menuInteractions.onPulpitClick();
-                }
-            }
-        });
-
-        list.setOnClickListener(view -> {
+        home.setOnClickListener(view -> {
             if (menuInteractions != null) {
-                menuInteractions.onListClick();
+                menuInteractions.onHomeClick();
+            }
+        });
+
+        repertoire.setOnClickListener(view -> {
+            if (menuInteractions != null) {
+                menuInteractions.onRepertoireClick();
+            }
+        });
+
+        tickets.setOnClickListener(view -> {
+            if (menuInteractions != null) {
+                if(currentUser != null)
+                {
+                    menuInteractions.onTicketsClick();
+                }
+                else  Toast.makeText(getContext(),"Please log in",Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+        map.setOnClickListener(view -> {
+            if (menuInteractions != null) {
+                menuInteractions.onMapClick();
+            }
+        });
+
+        events.setOnClickListener(view -> {
+            if (menuInteractions != null) {
+                menuInteractions.onEventsClick();
+            }
+        });
+
+        tutorial.setOnClickListener(view -> {
+            if (menuInteractions != null) {
+                menuInteractions.onTutorialClick();
+            }
+        });
+
+        account.setOnClickListener(view -> {
+            if (menuInteractions != null) {
+                menuInteractions.onAccountClick();
             }
         });
     }
 
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.promocje:
-                Toast.makeText(getContext(), "HURA UDALO SIE", Toast.LENGTH_SHORT).show();
-                break;
-        }
-    }
+
 
     public void setMenuInteractions(MenuInteractions menuInteractions) {
         this.menuInteractions = menuInteractions;
     }
 
     public interface MenuInteractions {
-        void onPulpitClick();
-
-        void onListClick();
+        void onHomeClick();
+        void onRepertoireClick();
+        void onTicketsClick();
+        void onMapClick();
+        void onEventsClick();
+        void onTutorialClick();
+        void onAccountClick();
     }
 }

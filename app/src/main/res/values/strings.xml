@@ -1,13 +1,19 @@
 <resources>
     <string name="app_name">MDK Radomsko</string>
-    <string name="pulpit">Pulpit</string>
-    <string name="repertoire">Repertuar</string>
-    <string name="map">Mapa</string>
-    <string name="event_list">Lista Eventów</string>
+    <string name="home">Home</string>
+    <string name="repertoire">Repertoire</string>
+    <string name="map">Map</string>
+    <string name="event_list">List of events</string>
     <string name="tutorial">Tutorial</string>
-    <string name="tickets">Moje Bilety</string>
-    <string name="account">Konto</string>
-    <string name="update">Zapisz</string>event_list
+    <string name="tickets">Tickets</string>
+    <string name="account">Account</string>
+    <string name="update">Safe</string>event_list
+
+
+
+
+
+
 
 
     <string name="desc_firebase_lockup">Firebase logo and name</string>
@@ -30,6 +36,4 @@
     <string name="strCyan">Color Cyan means that you have bought a place</string>
     <string name="category_help">Help</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

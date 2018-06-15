@@ -9,14 +9,15 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Window;
-import android.widget.Toast;
 
 import com.wfis.wfis_shop.core.BaseFragment;
+import com.wfis.wfis_shop.fragments.fragment_event_list;
 import com.wfis.wfis_shop.fragments.HomeFragment;
-import com.wfis.wfis_shop.fragments.ListFragment;
+import com.wfis.wfis_shop.fragments.LoginFragment;
 import com.wfis.wfis_shop.fragments.MyTicketsFragment;
+import com.wfis.wfis_shop.fragments.RepertoireFragment;
 import com.wfis.wfis_shop.fragments.ShopMapFragment;
+import com.wfis.wfis_shop.fragments.ToolsFragment;
 import com.wfis.wfis_shop.navigation.MenuView;
 import com.wfis.wfis_shop.navigation.NavigationInterface;
 import com.wfis.wfis_shop.navigation.TopBar;
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements NavigationInterfa
     private MenuView menuView;
     private FragmentManager manager;
     private static  BaseFragment statFragment = HomeFragment.newInstance();
+    private static  BaseFragment lastFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,8 @@ public class MainActivity extends AppCompatActivity implements NavigationInterfa
 
         if (statFragment.toString().startsWith("HomeFragment")) changeFragment(statFragment, false);
         else changeFragment(statFragment, true);
+
+        lastFragment = statFragment;
 
     }
 
@@ -55,11 +59,11 @@ public class MainActivity extends AppCompatActivity implements NavigationInterfa
     }
 
     private void closeDrawer() {
-        drawerLayout.closeDrawer(GravityCompat.END);
+        drawerLayout.closeDrawer(GravityCompat.START);
     }
 
     private void openDrawer() {
-        drawerLayout.openDrawer(GravityCompat.END);
+        drawerLayout.openDrawer(GravityCompat.START);
     }
 
     @Override
@@ -72,13 +76,17 @@ public class MainActivity extends AppCompatActivity implements NavigationInterfa
 
 
         statFragment=fragment;
-        navigateTo(fragment, true);
+
+        if (!lastFragment.toString().startsWith("MyTicketsFragment"))  navigateTo(fragment, true);
+
+        lastFragment = fragment;
     }
 
 
     @Override
     public void changeFragment(BaseFragment fragment, boolean addToBackStack) {
         navigateTo(fragment, addToBackStack);
+        lastFragment = fragment;
     }
 
     private void navigateTo(Fragment fragment, boolean addToBackStack) {
@@ -117,16 +125,47 @@ public class MainActivity extends AppCompatActivity implements NavigationInterfa
 
     // -------------- MENU INTERACTIONS !
     @Override
-    public void onPulpitClick() {
+    public void onHomeClick() {
         changeFragment(HomeFragment.newInstance());
         closeDrawer();
     }
 
     @Override
-    public void onListClick() {
-        changeFragment(ListFragment.newInstance());
+    public void onRepertoireClick() {
+        changeFragment(RepertoireFragment.newInstance());
         closeDrawer();
     }
+
+    @Override
+    public void onTicketsClick() {
+        changeFragment(MyTicketsFragment.newInstance());
+        closeDrawer();
+    }
+
+    @Override
+    public void onMapClick() {
+        changeFragment(ShopMapFragment.newInstance());
+        closeDrawer();
+    }
+
+    @Override
+    public void onEventsClick() {
+        changeFragment(fragment_event_list.newInstance());
+        closeDrawer();
+    }
+
+    @Override
+    public void onTutorialClick() {
+        changeFragment(ToolsFragment.newInstance());
+        closeDrawer();
+    }
+
+    @Override
+    public void onAccountClick() {
+        changeFragment(LoginFragment.newInstance());
+        closeDrawer();
+    }
+
 
 
     // ---------------- TopBar INTERACTIONS
