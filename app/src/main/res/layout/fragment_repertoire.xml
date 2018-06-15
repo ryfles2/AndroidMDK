@@ -59,6 +59,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:text="Buy ticket"
-        android:visibility="gone" />
+        android:visibility="gone"
+        android:background="#72BE42"/>
 
 </LinearLayout>
