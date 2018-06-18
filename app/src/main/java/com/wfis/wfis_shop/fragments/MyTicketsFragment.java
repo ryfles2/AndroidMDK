@@ -172,7 +172,7 @@ public class MyTicketsFragment extends BaseFragment {
                 viewHolder.btnReservation.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(getContext(),"you canceled the place reservation "+model.getMiejsce(),Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getContext(),"you canceled the place reservation "+model.getMiejsce(),Toast.LENGTH_SHORT).show();
 
                         database.getReference().child("myTickets/"+currentUser.getUid()+"/"+model.getIdMiejsca()+model.getMiejsce()).removeValue();
 
@@ -180,7 +180,7 @@ public class MyTicketsFragment extends BaseFragment {
                         SiteModel modelSite= new SiteModel("0","0","0");
                         data.child(model.getMiejsce()).setValue(modelSite);
 
-                        onNotification();
+                        onNotification("You canceled the place reservation "+model.getMiejsce(),model.getTytul());
                     }
                 });
 
@@ -220,7 +220,6 @@ public class MyTicketsFragment extends BaseFragment {
 
                     DatabaseReference dataTmp = database.getReference("idMiejsce/" + tempIdMiejsca );
                     dataTmp.child(tempMiejsce).child("status").setValue("2");
-                    onNotification();
                 }
             }
             else if (resultCode == Activity .RESULT_CANCELED )
@@ -237,26 +236,24 @@ public class MyTicketsFragment extends BaseFragment {
     }
 
 
-    public void onNotification()
+    public void onNotification(String messg,String from)
     {
         // prepare intent which is triggered if the
 // notification is selected
 
-        Intent intent = new Intent(getActivity(), MainActivity.class);
+        //Intent intent = new Intent(getActivity(), MainActivity.class);
 // use System.currentTimeMillis() to have a unique ID for the pending intent
-        PendingIntent pIntent = PendingIntent.getActivity(getContext(), (int) System.currentTimeMillis(), intent, 0);
+       //PendingIntent pIntent = PendingIntent.getActivity(getContext(), (int) System.currentTimeMillis(), intent, 0);
 
 // build notification
 // the addAction re-use the same intent to keep the example short
         Notification n  = new Notification.Builder(getContext())
-                .setContentTitle("New mail from " + "test@gmail.com")
-                .setContentText("Subject")
+                .setContentTitle(messg)
+                .setContentText(from)
                 .setSmallIcon(R.drawable.icon)
-                .setContentIntent(pIntent)
+                //.setContentIntent(pIntent)
                 .setAutoCancel(true)
-                .addAction(R.drawable.icon, "Call", pIntent)
-                .addAction(R.drawable.icon, "More", pIntent)
-                .addAction(R.drawable.icon, "And more", pIntent).build();
+                .build();
 
 
         NotificationManager notificationManager =
