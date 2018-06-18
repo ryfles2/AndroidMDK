@@ -62,6 +62,7 @@ public class HomeFragment extends BaseFragment {
         photos.add("https://www.filepicker.io/api/file/UJOIGNaATj23GhRSwSWl/convert?fit=clip&w=270");
         adaper.setPhotos(photos);
 
+
         final Handler handler = new Handler();
         final Runnable Update = new Runnable() {
             public void run() {

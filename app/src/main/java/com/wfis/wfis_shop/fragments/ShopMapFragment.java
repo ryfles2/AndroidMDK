@@ -13,6 +13,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
@@ -95,6 +96,11 @@ public class ShopMapFragment extends BaseFragment implements OnMapReadyCallback,
     public boolean onMarkerClick(Marker marker) {
         clusterManager.onMarkerClick(marker);
         Toast.makeText(getContext(),marker.getTitle(),Toast.LENGTH_SHORT).show();
+        CameraPosition MARKER_POS = new CameraPosition.Builder()
+                .target(marker.getPosition())
+                .zoom(16)
+                .build();
+        googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(MARKER_POS));
         return true;
     }
 

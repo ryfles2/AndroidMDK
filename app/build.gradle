@@ -64,6 +64,8 @@ dependencies {
 
     // Google Sign In SDK (only required for Google Sign In)
     compile 'com.google.android.gms:play-services-auth:11.6.0'
+
+
 }
 
 apply plugin: 'com.google.gms.google-services'

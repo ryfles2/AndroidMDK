@@ -51,6 +51,13 @@
             android:inputType="textEmailAddress"
             android:background="#72BE42"/>
 
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal" />
+
         <EditText
             android:id="@+id/field_password"
             android:layout_width="0dp"
@@ -58,7 +65,7 @@
             android:layout_weight="1"
             android:hint="@string/hint_password"
             android:inputType="textPassword"
-            android:background="#72BE42"/>
+            android:background="@color/cardview_dark_background"/>
 
         <Button
             android:id="@+id/email_sign_in_button"
