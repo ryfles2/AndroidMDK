@@ -71,8 +71,8 @@ public class MainActivity extends AppCompatActivity implements NavigationInterfa
 
         //Toast.makeText(this,fragment.toString() +"  "+ MyTicketsFragment.class.toString(),Toast.LENGTH_SHORT).show();
 
-        if (fragment.toString().startsWith("MyTicketsFragment")) setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE );
-        else setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED );
+//        if (fragment.toString().startsWith("MyTicketsFragment")) setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE );
+//        else setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED );
 
 
         statFragment=fragment;
