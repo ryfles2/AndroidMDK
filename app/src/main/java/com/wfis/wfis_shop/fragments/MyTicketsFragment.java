@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.wfis.wfis_shop.Common.Common;
 import com.wfis.wfis_shop.Common.ConfigPayPal;
 import com.wfis.wfis_shop.MainActivity;
 import com.wfis.wfis_shop.core.BaseFragment;
@@ -72,8 +73,9 @@ public class MyTicketsFragment extends BaseFragment {
     }
 
     //paypal
-    private static PayPalConfiguration confing = new PayPalConfiguration()
-            .environment(PayPalConfiguration.ENVIRONMENT_SANDBOX)//use sandbox when test, later change
+    private static PayPalConfiguration config = new PayPalConfiguration()
+//            .environment(PayPalConfiguration.ENVIRONMENT_SANDBOX)//use sandbox when test, later change
+            .environment(PayPalConfiguration.ENVIRONMENT_NO_NETWORK )//use sandbox when test, later change
             .clientId(ConfigPayPal.PAYPAL_CLIENT_ID);
     private static final int PAYPAL_REQUEST_CODE=9999;
 
@@ -89,12 +91,12 @@ public class MyTicketsFragment extends BaseFragment {
 
         //int paypal
         Intent intent = new Intent(getActivity(), PayPalService.class);
-        intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION,confing);
+        intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION,config);
         getActivity().startService(intent);
 
         if (currentUser != null)
         {
-            myTickets = database.getReference("myTickets/"+currentUser.getUid());//+"/01");
+            myTickets = database.getReference(Common.city+"/"+"myTickets/"+currentUser.getUid());//+"/01");
             recyclerMyTickets=(RecyclerView)view.findViewById(R.id.myTicketRecyclerMenu);
             recyclerMyTickets.setHasFixedSize(true);
             layoutManager = new GridLayoutManager(getContext(),1);
@@ -174,9 +176,9 @@ public class MyTicketsFragment extends BaseFragment {
                     public void onClick(View view) {
                         //Toast.makeText(getContext(),"you canceled the place reservation "+model.getMiejsce(),Toast.LENGTH_SHORT).show();
 
-                        database.getReference().child("myTickets/"+currentUser.getUid()+"/"+model.getIdMiejsca()+model.getMiejsce()).removeValue();
+                        database.getReference().child(Common.city+"/"+"myTickets/"+currentUser.getUid()+"/"+model.getIdMiejsca()+model.getMiejsce()).removeValue();
 
-                        DatabaseReference data = database.getReference("idMiejsce/" + model.getIdMiejsca() );
+                        DatabaseReference data = database.getReference(Common.city+"/"+"idMiejsce/" + model.getIdMiejsca() );
                         SiteModel modelSite= new SiteModel("0","0","0");
                         data.child(model.getMiejsce()).setValue(modelSite);
 
@@ -190,13 +192,13 @@ public class MyTicketsFragment extends BaseFragment {
         recyclerMyTickets.setAdapter(adapterTicket);
 
     }
+
     private void startPayment(int amount) {
         PayPalPayment payment = new PayPalPayment(new BigDecimal(String.valueOf(amount)),"USD","Theater Payment", PayPalPayment.PAYMENT_INTENT_SALE);
         Intent intent = new Intent(getContext(), PaymentActivity.class);
-        intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, confing);
+        intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
         intent.putExtra(PaymentActivity.EXTRA_PAYMENT,payment);
         startActivityForResult(intent, PAYPAL_REQUEST_CODE);
-
     }
 
     @Override
@@ -216,9 +218,9 @@ public class MyTicketsFragment extends BaseFragment {
                     {
                         e.printStackTrace();
                     }
-                    database.getReference().child("myTickets/"+currentUser.getUid()+"/"+tempIdMiejsca+tempMiejsce).child("status").setValue("Bought");
+                    database.getReference().child(Common.city+"/"+"myTickets/"+currentUser.getUid()+"/"+tempIdMiejsca+tempMiejsce).child("status").setValue("Bought");
 
-                    DatabaseReference dataTmp = database.getReference("idMiejsce/" + tempIdMiejsca );
+                    DatabaseReference dataTmp = database.getReference(Common.city+"/"+"idMiejsce/" + tempIdMiejsca );
                     dataTmp.child(tempMiejsce).child("status").setValue("2");
                 }
             }

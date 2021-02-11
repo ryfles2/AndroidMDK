@@ -29,6 +29,7 @@ import com.paypal.android.sdk.payments.PayPalService;
 import com.paypal.android.sdk.payments.PaymentActivity;
 import com.paypal.android.sdk.payments.PaymentConfirmation;
 import com.squareup.picasso.Picasso;
+import com.wfis.wfis_shop.Common.Common;
 import com.wfis.wfis_shop.Common.ConfigPayPal;
 import com.wfis.wfis_shop.Interface.ItemClickListener;
 import com.wfis.wfis_shop.R;
@@ -91,7 +92,7 @@ public class RepertoireFragment extends BaseFragment {
         txtEepertuarPrice = view.findViewById(R.id.repertuarPrice);
         btnBuyTickets = view.findViewById(R.id.btnBuyTickets);
         database= FirebaseDatabase.getInstance();
-        repertuar = database.getReference("Repertual");
+        repertuar = database.getReference(Common.city+"/"+"Repertual");
         imageView = view.findViewById(R.id.LogoImageView);
         recyclerRepertuar=(RecyclerView)view.findViewById(R.id.repertuaRecyclerMenu);
         recyclerRepertuar.setHasFixedSize(true);
@@ -143,7 +144,7 @@ public class RepertoireFragment extends BaseFragment {
 
     private void loadDate()
     {
-        DatabaseReference data = database.getReference("idData");
+        DatabaseReference data = database.getReference(Common.city+"/"+"idData");
         adapterDate = new FirebaseRecyclerAdapter<DataModel, DataViewHolder>(DataModel.class,R.layout.menu_id_data,DataViewHolder.class,data.orderByChild("idTytul").equalTo(chooseFilm)) {//like select from data where idTytuł =
             @Override
             protected void populateViewHolder(DataViewHolder viewHolder, final DataModel model, int position) {
@@ -169,7 +170,7 @@ public class RepertoireFragment extends BaseFragment {
 
     private void loadSites()
     {
-        final DatabaseReference data = database.getReference("idMiejsce/" + seatId );
+        final DatabaseReference data = database.getReference(Common.city+"/"+"idMiejsce/" + seatId );
         btnBuyTickets.setVisibility(View.VISIBLE);
         //txtEepertuarPrice.setVisibility(View.VISIBLE);
 
@@ -233,7 +234,7 @@ public class RepertoireFragment extends BaseFragment {
                                 set.remove(position1);
                                 try
                                 {
-                                    database.getReference().child("myTickets/"+currentUser.getUid()+"/"+seatId+position1).removeValue();
+                                    database.getReference().child(Common.city+"/"+"myTickets/"+currentUser.getUid()+"/"+seatId+position1).removeValue();
 
                                 }
                                 catch(Exception e)
@@ -251,7 +252,7 @@ public class RepertoireFragment extends BaseFragment {
                                 set.add(position1);
                                 try
                                 {                                                                           //.push()
-                                    database.getReference().child("myTickets/"+currentUser.getUid()+"/"+seatId+position1).setValue(myTicketsModel);
+                                    database.getReference().child(Common.city+"/"+"myTickets/"+currentUser.getUid()+"/"+seatId+position1).setValue(myTicketsModel);
 
                                 }
                                 catch(Exception e)
@@ -315,8 +316,8 @@ public class RepertoireFragment extends BaseFragment {
                     for(String i : set)
                     {
                         Toast.makeText(getContext(),i,Toast.LENGTH_SHORT).show();
-                        database.getReference().child("myTickets/"+mAuth.getCurrentUser().getUid()+"/"+seatId+i).child("status").setValue("Bought");
-                        DatabaseReference dataTmp = database.getReference("idMiejsce/" + seatId );
+                        database.getReference().child(Common.city+"/"+"myTickets/"+mAuth.getCurrentUser().getUid()+"/"+seatId+i).child("status").setValue("Bought");
+                        DatabaseReference dataTmp = database.getReference(Common.city+"/"+"idMiejsce/" + seatId );
                         dataTmp.child(i).child("status").setValue("2");
                         txtEepertuarPrice.setText("0");
                     }
