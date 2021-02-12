@@ -129,6 +129,35 @@
 
     </LinearLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/common_google_signin_btn_text_dark_focused" />
+
+    <LinearLayout
+        android:id="@+id/city"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/green"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@color/common_google_signin_btn_text_dark_focused"
+            android:src="@drawable/ic_baseline_my_location_24"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dp"
+            android:text="@string/event_list"
+            android:textAllCaps="true"
+            android:textSize="20dp" />
+
+    </LinearLayout>
+
 
     <View
         android:layout_width="match_parent"

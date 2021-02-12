@@ -6,5 +6,5 @@ package com.wfis.wfis_shop.Common;
 
 public class Common {
     public static String currentMailUser="guest";
-    public static String city= "Lodz";
+    public static String city= "Łódz";
 }
