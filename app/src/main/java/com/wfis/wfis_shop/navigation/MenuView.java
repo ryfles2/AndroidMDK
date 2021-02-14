@@ -25,6 +25,7 @@ public class MenuView extends RelativeLayout {
     private LinearLayout events;
     private LinearLayout tutorial;
     private LinearLayout account;
+    private LinearLayout city;
     private MenuInteractions menuInteractions;
 
     public MenuView(Context context) {
@@ -56,6 +57,7 @@ public class MenuView extends RelativeLayout {
         events = findViewById(R.id.events);
         tutorial = findViewById(R.id.tutorial);
         account = findViewById(R.id.account);
+        city = findViewById(R.id.city);
 
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
@@ -106,6 +108,12 @@ public class MenuView extends RelativeLayout {
                 menuInteractions.onAccountClick();
             }
         });
+
+        city.setOnClickListener(view -> {
+            if (menuInteractions != null) {
+                menuInteractions.onCityClick();
+            }
+        });
     }
 
 
@@ -122,5 +130,6 @@ public class MenuView extends RelativeLayout {
         void onEventsClick();
         void onTutorialClick();
         void onAccountClick();
+        void onCityClick();
     }
 }

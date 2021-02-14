@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.wfis.wfis_shop.core.BaseFragment;
+import com.wfis.wfis_shop.fragments.CityFragment;
 import com.wfis.wfis_shop.fragments.fragment_event_list;
 import com.wfis.wfis_shop.fragments.HomeFragment;
 import com.wfis.wfis_shop.fragments.LoginFragment;
@@ -163,6 +164,12 @@ public class MainActivity extends AppCompatActivity implements NavigationInterfa
     @Override
     public void onAccountClick() {
         changeFragment(LoginFragment.newInstance());
+        closeDrawer();
+    }
+
+    @Override
+    public void onCityClick() {
+        changeFragment(CityFragment.newInstance());
         closeDrawer();
     }
 

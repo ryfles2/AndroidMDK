@@ -2,6 +2,7 @@ package com.wfis.wfis_shop.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,12 +19,20 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.maps.android.clustering.Cluster;
 import com.google.maps.android.clustering.ClusterItem;
 import com.google.maps.android.clustering.ClusterManager;
 import com.google.maps.android.clustering.ClusterManager.OnClusterItemClickListener;
+import com.wfis.wfis_shop.Common.Common;
 import com.wfis.wfis_shop.R;
 import com.wfis.wfis_shop.core.BaseFragment;
+import com.wfis.wfis_shop.models.City;
+import com.wfis.wfis_shop.models.Map;
 import com.wfis.wfis_shop.models.Shop;
 import com.wfis.wfis_shop.utils.ShopClusterRenderer;
 
@@ -35,6 +44,9 @@ public class ShopMapFragment extends BaseFragment implements OnMapReadyCallback,
     private MapView mapView;
     private GoogleMap googleMap;
     private ClusterManager<Shop> clusterManager;
+    private Map map;
+    private FirebaseDatabase database;
+    private DatabaseReference databaseReference;
 
     public static ShopMapFragment newInstance() {
 
@@ -49,6 +61,32 @@ public class ShopMapFragment extends BaseFragment implements OnMapReadyCallback,
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_shop_map, container, false);
+
+        map = new Map();
+        database= FirebaseDatabase.getInstance();
+        databaseReference = database.getReference(Common.city+"/"+"map");
+//        Log.e("Key", String.valueOf(databaseReference.child("lat")));
+//        Lat = Double.valueOf(databaseReference.child("lat").getKey().toString());
+//        Log.e("databaseReference", Lat.toString());
+//        Toast.makeText(getContext(), Lat.toString(), Toast.LENGTH_SHORT).show();
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                map = dataSnapshot.getValue(Map.class);
+                Log.e("title", map.title);
+                Log.e("lat", map.lat.toString());
+                Log.e("lng", map.lng.toString());
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.e("Read Fail", "Error");
+            }
+        });
+
+
 
         mapView = view.findViewById(R.id.fragment_shop_map_map);
         mapView.getMapAsync(this);
@@ -119,7 +157,7 @@ public class ShopMapFragment extends BaseFragment implements OnMapReadyCallback,
         );
         clusterManager = new ClusterManager(getContext(), googleMap);
         clusterManager.clearItems();
-        clusterManager.addItems(testShops());
+//        clusterManager.addItems(testShops());
         clusterManager.setRenderer(new ShopClusterRenderer(getContext(), googleMap, clusterManager));
 
         clusterManager.setOnClusterClickListener(this);
@@ -130,6 +168,8 @@ public class ShopMapFragment extends BaseFragment implements OnMapReadyCallback,
 
     private void centerOnPoland() {
         LatLngBounds.Builder builder = LatLngBounds.builder();
+//        builder.include(new LatLng(51.089150, 19.525181));
+//        builder.include(new LatLng(51.040575, 19.396054));
         builder.include(new LatLng(51.089150, 19.525181));
         builder.include(new LatLng(51.040575, 19.396054));
         LatLngBounds bounds = builder.build();
@@ -138,25 +178,25 @@ public class ShopMapFragment extends BaseFragment implements OnMapReadyCallback,
 
     }
     //PUNKTY NA MAPIE
-    private List<Shop> testShops() {
-        List<Shop> list = new ArrayList<>();
-        Shop shop;
-        shop = new Shop();
-        shop.setLat(51.067894);
-        shop.setLon(19.444650);
-        shop.setName("Museum" );
-
-        list.add(shop);
-//        for (int i = 0; i < 20; i++) {
-//            shop = new Shop();
-//            shop.setLat(51.777003 + (i * 0.002));
-//            shop.setLon(19.489993 + (i * 0.002));
-//            shop.setName("shop " + i);
-//            list.add(shop);
-//        }
-
-        return list;
-    }
+//    private List<Shop> testShops() {
+//        List<Shop> list = new ArrayList<>();
+//        Shop shop;
+//        shop = new Shop();
+//        shop.setLat(51.067894);
+//        shop.setLon(19.444650);
+//        shop.setName("Museum" );
+//
+//        list.add(shop);
+////        for (int i = 0; i < 20; i++) {
+////            shop = new Shop();
+////            shop.setLat(51.777003 + (i * 0.002));
+////            shop.setLon(19.489993 + (i * 0.002));
+////            shop.setName("shop " + i);
+////            list.add(shop);
+////        }
+//
+//        return list;
+//    }
 
 
     @Override

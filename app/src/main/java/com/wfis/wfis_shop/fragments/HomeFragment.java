@@ -42,6 +42,7 @@ public class HomeFragment extends BaseFragment {
     private View event_list;
     private View tutorial;
     private View account;
+    private View city;
 
     @Nullable
     @Override
@@ -101,14 +102,17 @@ public class HomeFragment extends BaseFragment {
         map.setOnClickListener(view -> {
             getNavigation().changeFragment(ShopMapFragment.newInstance());
         });
-        event_list.setOnClickListener(view -> {
-            getNavigation().changeFragment(fragment_event_list.newInstance());
-        });
+//        event_list.setOnClickListener(view -> {
+//            getNavigation().changeFragment(fragment_event_list.newInstance());
+//        });
         tutorial.setOnClickListener(view -> {
             getNavigation().changeFragment(ToolsFragment.newInstance());
         });
         account.setOnClickListener(view -> {
             getNavigation().changeFragment(LoginFragment.newInstance());
+        });
+        city.setOnClickListener(view -> {
+            getNavigation().changeFragment(CityFragment.newInstance());
         });
     }
 
@@ -117,8 +121,9 @@ public class HomeFragment extends BaseFragment {
         repertoire = view.findViewById(R.id.repertoire);
         tickets = view.findViewById(R.id.tickets);
         map = view.findViewById(R.id.map);
-        event_list = view.findViewById(R.id.event_list);
+//        event_list = view.findViewById(R.id.event_list);
         tutorial = view.findViewById(R.id.tutorial);
         account = view.findViewById(R.id.account);
+        city = view.findViewById(R.id.city_home);
     }
 }

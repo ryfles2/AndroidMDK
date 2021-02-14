@@ -214,7 +214,7 @@
                     android:layout_weight="1">
 
                     <ImageView
-                        android:id="@+id/event_list"
+                        android:id="@+id/city_home"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
@@ -223,17 +223,17 @@
                     <ImageView
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:layout_alignBottom="@id/event_list"
-                        android:layout_alignEnd="@id/event_list"
-                        android:layout_alignStart="@+id/event_list"
-                        android:layout_alignTop="@id/event_list"
+                        android:layout_alignBottom="@id/city_home"
+                        android:layout_alignEnd="@id/city_home"
+                        android:layout_alignStart="@+id/city_home"
+                        android:layout_alignTop="@id/city_home"
                         android:padding="40dp"
                         android:src="@drawable/ic_baseline_my_location_24" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/event_list"
+                        android:layout_below="@id/city_home"
                         android:layout_centerHorizontal="true"
                         android:text="@string/event_list"
                         android:textColor="#72BE42"/>
