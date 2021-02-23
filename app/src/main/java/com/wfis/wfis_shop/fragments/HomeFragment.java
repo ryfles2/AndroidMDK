@@ -58,9 +58,11 @@ public class HomeFragment extends BaseFragment {
         ViewPagerAdaper adaper = new ViewPagerAdaper();
         viewPager.setAdapter(adaper);
         List<String> photos = new ArrayList<>();
-        photos.add("http://www.mdkradomsko.pl/assets/page-images/news-foto.jpg");
-        photos.add("https://www.filepicker.io/api/file/0xFvPm5HSSSbtqi6Awwn/convert?fit=clip&w=270");
-        photos.add("https://www.filepicker.io/api/file/UJOIGNaATj23GhRSwSWl/convert?fit=clip&w=270");
+        photos.add("https://mojegizycko.pl/wp-content/uploads/2018/12/Otwarcie_Kino_Nowa_Fala_17-06-2017_fot_Tomasz_Karolski_nr_2.jpg");
+        photos.add("https://oknonawagrowiec.pl/wp-content/uploads/2019/10/kino.png");
+        photos.add("https://www.radio90.pl/files/2019/11/cinema-city-cieszyn-kino-r90-1.jpg");
+        photos.add("http://gdziebylec.pl/img/obiekty/16485/8bc44c6749_thmb300_pict_156829_jpg.jpg");
+        photos.add("https://bi.im-g.pl/im/17/9b/15/z22658583V,Kino.jpg");
         adaper.setPhotos(photos);
 
 

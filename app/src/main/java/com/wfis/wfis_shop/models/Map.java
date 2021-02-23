@@ -6,9 +6,9 @@ public class Map {
     public Double lng;
 
     public Map() {
-//        this.title = "Mdk";
-//        this.lat = 0.;
-//        this.lng = 0.;
+        this.title = "Łódzki Dom Kultury";
+        this.lat = 51.77064423629994;
+        this.lng = 19.472689898306754;
     }
 
     @Override

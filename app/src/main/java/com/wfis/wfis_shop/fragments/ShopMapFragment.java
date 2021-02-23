@@ -61,23 +61,17 @@ public class ShopMapFragment extends BaseFragment implements OnMapReadyCallback,
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_shop_map, container, false);
-
         map = new Map();
         database= FirebaseDatabase.getInstance();
-        databaseReference = database.getReference(Common.city+"/"+"map");
-//        Log.e("Key", String.valueOf(databaseReference.child("lat")));
-//        Lat = Double.valueOf(databaseReference.child("lat").getKey().toString());
-//        Log.e("databaseReference", Lat.toString());
-//        Toast.makeText(getContext(), Lat.toString(), Toast.LENGTH_SHORT).show();
+        databaseReference = database.getReference(Common.city+"/"+"Map");
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
                 map = dataSnapshot.getValue(Map.class);
-                Log.e("title", map.title);
-                Log.e("lat", map.lat.toString());
-                Log.e("lng", map.lng.toString());
+//                Log.e("title", map.title);
+//                Log.e("lat", map.lat.toString());
+//                Log.e("lng", map.lng.toString());
             }
 
             @Override
@@ -148,13 +142,15 @@ public class ShopMapFragment extends BaseFragment implements OnMapReadyCallback,
         this.googleMap.setOnMarkerClickListener(this);
         this.googleMap.setOnCameraIdleListener(this::onCameraIdle);
 
-        centerOnPoland();
+
 
         this.googleMap.addMarker(new MarkerOptions()
-                .title("MDK Radomsko")
-                .position(new LatLng(51.064949, 19.442058))
+                .title(map.title)
+                .position(new LatLng(map.lat, map.lng))
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE))
         );
+
+        centerOnPoland();
         clusterManager = new ClusterManager(getContext(), googleMap);
         clusterManager.clearItems();
 //        clusterManager.addItems(testShops());
@@ -165,13 +161,13 @@ public class ShopMapFragment extends BaseFragment implements OnMapReadyCallback,
         clusterManager.setOnClusterItemInfoWindowClickListener(this);
         clusterManager.cluster();
     }
-
+    //51.064949, 19.442058
     private void centerOnPoland() {
         LatLngBounds.Builder builder = LatLngBounds.builder();
 //        builder.include(new LatLng(51.089150, 19.525181));
 //        builder.include(new LatLng(51.040575, 19.396054));
-        builder.include(new LatLng(51.089150, 19.525181));
-        builder.include(new LatLng(51.040575, 19.396054));
+        builder.include(new LatLng(map.lat - 0.024201, map.lng - 0.083123));
+        builder.include(new LatLng(map.lat + 0.024374, map.lng + 0.046004));
         LatLngBounds bounds = builder.build();
         googleMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 20));
 
