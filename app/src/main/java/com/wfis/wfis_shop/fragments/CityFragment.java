@@ -82,7 +82,7 @@ public class CityFragment extends BaseFragment {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot child: dataSnapshot.getChildren()){
-                    Log.e("Add City", child.getKey());
+//                    Log.e("Add City", child.getKey());
                     adapter.setCity(new City(child.getKey()));
                 }
             }

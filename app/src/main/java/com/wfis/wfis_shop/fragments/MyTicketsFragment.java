@@ -75,7 +75,7 @@ public class MyTicketsFragment extends BaseFragment {
     //paypal
     private static PayPalConfiguration config = new PayPalConfiguration()
 //            .environment(PayPalConfiguration.ENVIRONMENT_SANDBOX)//use sandbox when test, later change
-            .environment(PayPalConfiguration.ENVIRONMENT_NO_NETWORK )//use sandbox when test, later change
+            .environment(PayPalConfiguration.ENVIRONMENT_NO_NETWORK )//use mock when test, later change
             .clientId(ConfigPayPal.PAYPAL_CLIENT_ID);
     private static final int PAYPAL_REQUEST_CODE=9999;
 
